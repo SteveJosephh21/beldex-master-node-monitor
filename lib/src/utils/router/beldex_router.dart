@@ -10,7 +10,9 @@ import 'package:master_node_monitor/src/screens/details_master_node/page.dart';
 import 'package:master_node_monitor/src/screens/edit_daemons.dart';
 import 'package:master_node_monitor/src/screens/edit_master_node_page.dart';
 import 'package:master_node_monitor/src/screens/edit_master_nodes.dart';
+import 'package:master_node_monitor/src/screens/faq_page.dart';
 import 'package:master_node_monitor/src/screens/settings_page.dart';
+import 'package:master_node_monitor/src/screens/terms_and_conditions.dart';
 import 'package:master_node_monitor/src/screens/welcome_page.dart';
 import 'package:master_node_monitor/src/stores/settings_store.dart';
 import 'package:master_node_monitor/src/utils/edit_master_node_arguments.dart';
@@ -63,6 +65,12 @@ class BeldexRouter {
           String nodeName = args.length > 1 ? args[1] : null;
           return DetailsMasterNodePage(args.first, nodeName: nodeName);
         });
+
+      case BeldexRoutes.termsAndConditions:
+        return CupertinoPageRoute(builder: (_) => TermsAndConditions());
+
+      case BeldexRoutes.faq:
+        return CupertinoPageRoute(builder: (_) => FaqPage());
 
       default:
         return MaterialPageRoute<void>(

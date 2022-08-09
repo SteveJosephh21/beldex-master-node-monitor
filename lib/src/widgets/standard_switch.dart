@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class StandardSwitch extends StatefulWidget {
   const StandardSwitch({@required this.value, @required this.onTaped});
@@ -34,11 +35,27 @@ class StandardSwitchState extends State<StandardSwitch> {
                   ? Theme.of(context).toggleButtonsTheme.selectedColor
                   : Theme.of(context).toggleButtonsTheme.disabledColor,
               borderRadius: BorderRadius.all(Radius.circular(25.0))),
-          child: Icon(
+          child: widget.value
+              ? Padding(
+                  padding: EdgeInsets.all(3),
+                  child: SvgPicture.asset(
+                    'assets/images/white_theme_icon.svg',
+                    color: Colors.white,
+                    width: 16.0,
+                    height: 16.0,
+                  ))
+              : Padding(
+                  padding: EdgeInsets.all(3),
+                  child: SvgPicture.asset(
+                    'assets/images/dark_theme_icon.svg',
+                    color: Colors.white,
+                    width: 16.0,
+                    height: 16.0,
+                  )), /*widget.value ? Padding(padding:EdgeInsets.all(10),child: SvgPicture.asset('assets/images/white_theme_icon.svg',width: 16.0, height: 16.0,)):SvgPicture.asset('assets/images/dark_theme_icon.svg',width: 16.0, height: 16.0,),*/ /*Icon(
             widget.value ? Icons.check : Icons.close,
             color: Colors.white,
             size: 16.0,
-          ),
+          ),*/
         ),
       ),
     );

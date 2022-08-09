@@ -63,7 +63,7 @@ class _MasterNodeCardState extends State<MasterNodeCard> {
       : '';
     final earnedDowntimeBlocksDisplay = partiallyStaked
       ? ''
-      : ' ($earnedDowntimeBlocks / $DECOMMISSION_MAX_CREDIT ${S.of(context).blocks})';
+      : '';//: ' ($earnedDowntimeBlocks / $DECOMMISSION_MAX_CREDIT ${S.of(context).blocks})';
     final statusIcon = isUnlocking
         ? SvgPicture.asset('assets/images/locked.svg',width: 30,height: 30,)
         : (active

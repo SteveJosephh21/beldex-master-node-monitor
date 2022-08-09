@@ -135,7 +135,7 @@ class DetailsMasterNodePage extends BasePage {
                                         style: TextStyle(fontSize: 20,color:Colors.white))
                                   ]),
                       ),
-                      color: BeldexPalette.tealWithOpacity,
+                      color: node.active? BeldexPalette.tealWithOpacity: BeldexPalette.deleteButton,
                     ),
                   ),
                 ),

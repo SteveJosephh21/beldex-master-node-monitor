@@ -15,6 +15,7 @@ import 'package:master_node_monitor/src/utils/router/beldex_router.dart';
 import 'package:master_node_monitor/src/utils/theme/palette.dart';
 import 'package:master_node_monitor/src/utils/theme/theme_changer.dart';
 import 'package:master_node_monitor/src/utils/theme/themes.dart';
+import 'package:native_updater/native_updater.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -53,10 +54,49 @@ Future<void> main() async {
   ], child: BeldexMasterNodeApp()));
 }
 
-class BeldexMasterNodeApp extends StatelessWidget {
+class BeldexMasterNodeApp extends StatefulWidget {
   BeldexMasterNodeApp() {
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  }
+
+  @override
+  _BeldexMasterNodeAppState createState() => _BeldexMasterNodeAppState();
+}
+
+class _BeldexMasterNodeAppState extends State<BeldexMasterNodeApp> {
+  @override
+  void initState() {
+    super.initState();
+    checkVersion(context);
+  }
+
+  Future<void> checkVersion(BuildContext context) async {
+    /// For example: You got status code of 412 from the
+    /// response of HTTP request.
+    /// Let's say the statusCode 412 requires you to force update
+    final statusCode = 412;
+
+    /// This could be kept in our local
+    final localVersion = 9;
+
+    /// This could get from the API
+    final serverLatestVersion = 10;
+
+    Future.delayed(Duration.zero, () {
+      if (statusCode == 412) {
+        NativeUpdater.displayUpdateAlert(
+          context,
+          forceUpdate: true,
+          appStoreUrl: '',
+          playStoreUrl: 'https://play.google.com/store/apps/details?id=io.beldex.master_node_monitor',
+          iOSDescription: 'A new version of the Beldex Master Node Monitor is available. Update to continue using it.',
+          iOSUpdateButtonLabel: 'Upgrade',
+          iOSCloseButtonLabel: 'Exit',
+          iOSAlertTitle: 'Mandatory Update',
+        );
+      }
+    });
   }
 
   @override

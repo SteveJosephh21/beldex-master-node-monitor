@@ -40,6 +40,106 @@ class EditMasterNodesPageBody extends StatefulWidget {
 }
 
 class EditMasterNodesPageBodyState extends State<EditMasterNodesPageBody> {
+
+  Future _deleteMasterNode(NodeSyncStore nodeSyncStore, Box<MasterNode> masterNodeSources, MasterNode masterNode) async {
+    await masterNodeSources.delete(masterNode.key);
+
+    if (masterNodeSources.isEmpty)
+      Navigator.pushNamedAndRemoveUntil(context, BeldexRoutes.welcome,
+          ModalRoute.withName(BeldexRoutes.dashboard));
+    else {
+      await nodeSyncStore.sync();
+      setState(() {
+
+      });
+    }
+  }
+
+  void showConfirmationDialog(BuildContext context, NodeSyncStore nodeSyncStore, Box<MasterNode> masterNodeSources, MasterNode masterNode){
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Dialog(
+          backgroundColor: Theme.of(context).cardColor,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10)
+          ),
+          child: Container(
+            padding: EdgeInsets.all(15),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(15),
+                  child: Text(
+                    "Are you sure you want to delete this Node from this list?",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 18,
+                      decoration: TextDecoration.none,
+                      color: Theme.of(context).primaryTextTheme.caption.color,
+                    ),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    ButtonTheme(
+                        height: 56.0,
+                        child: TextButton(
+                          onPressed:(){
+                            Navigator.of(context).pop();
+                          },
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).primaryTextTheme.headline3.backgroundColor),
+                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      side: BorderSide(color: Theme.of(context).primaryTextTheme.headline3.backgroundColor),
+                                      borderRadius: BorderRadius.circular(10.0)
+                                  ))
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top:2.0,bottom: 2.0,left: 18.0,right: 18.0),
+                            child: Text("Cancel",
+                                style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: Theme.of(context).primaryTextTheme.headline3.color)),
+                          ),
+                        )),
+                    ButtonTheme(
+                        height: 56.0,
+                        child: TextButton(
+                          onPressed:(){
+                            _deleteMasterNode(nodeSyncStore,masterNodeSources,masterNode);
+                            Navigator.pop(context);
+                          },
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(BeldexPalette.deleteButton),
+                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      side: BorderSide(color: BeldexPalette.deleteButton),
+                                      borderRadius: BorderRadius.circular(10.0)
+                                  ))
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top:2.0,bottom: 2.0,left: 18.0,right: 18.0),
+                            child: Text("Delete",
+                                style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: Theme.of(context).primaryTextTheme.button.color)),
+                          ),
+                        )),
+                  ],
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final masterNodeSources = context.watch<Box<MasterNode>>();
@@ -68,18 +168,8 @@ class EditMasterNodesPageBodyState extends State<EditMasterNodesPageBody> {
                           .headline6
                           .color,),
                       trailing: InkWell(
-                        onTap: () async {
-                          await masterNodeSources.delete(masterNode.key);
-
-                          if (masterNodeSources.isEmpty)
-                            Navigator.pushNamedAndRemoveUntil(context, BeldexRoutes.welcome,
-                                ModalRoute.withName(BeldexRoutes.dashboard));
-                          else {
-                            await nodeSyncStore.sync();
-                            setState(() {
-
-                            });
-                          }
+                        onTap: () {
+                          showConfirmationDialog(context,nodeSyncStore,masterNodeSources,masterNode);
                         },
                         child: SvgPicture.asset('assets/images/delete.svg',color:BeldexPalette.deleteButton,width: 20,height: 20,),
                       ),
@@ -111,7 +201,13 @@ class EditMasterNodesPageBodyState extends State<EditMasterNodesPageBody> {
                       },
                     ));
 
-                    return Dismissible(
+                    return Card(
+                        color: Theme.of(context).cardColor,
+                        elevation: 10,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)
+                        ),
+                        child: content);/*Dismissible(
                         key: Key('${masterNode.key}'),
                         onDismissed: (direction) async {
                           await masterNodeSources.delete(masterNode.key);
@@ -135,7 +231,7 @@ class EditMasterNodesPageBodyState extends State<EditMasterNodesPageBody> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)
                             ),
-                            child: content));
+                            child: content));*/
                   }))
         ],
       ),

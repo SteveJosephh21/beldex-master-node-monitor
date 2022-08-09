@@ -10,4 +10,6 @@ class BeldexRoutes {
   static const settingsChangelog = '/settings/changelog';
   static const settingsMasterNode = '/settings/master_node';
   static const detailsMasterNode = '/details/master_node';
+  static const termsAndConditions = '/settings/terms_and_conditions';
+  static const faq = 'settings/faq';
 }

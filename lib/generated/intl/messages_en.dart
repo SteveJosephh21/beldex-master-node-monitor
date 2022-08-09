@@ -66,6 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "health_all_nodes" : m4,
     "health_no_nodes" : MessageLookupByLibrary.simpleMessage("No nodes are operational!"),
     "health_out_of_nodes" : m5,
+    "help" : MessageLookupByLibrary.simpleMessage("Help"),
     "hours" : MessageLookupByLibrary.simpleMessage("hours"),
     "last_reward" : MessageLookupByLibrary.simpleMessage("Last\nReward"),
     "last_reward_height" : MessageLookupByLibrary.simpleMessage("Last Reward Height"),
@@ -110,6 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "storage_server" : MessageLookupByLibrary.simpleMessage("Storage\nServer"),
     "success_saved_node" : MessageLookupByLibrary.simpleMessage("Node successfully saved"),
     "swarm_id" : MessageLookupByLibrary.simpleMessage("Swarm ID"),
+    "termsAndConditions" : MessageLookupByLibrary.simpleMessage("Terms and Conditions"),
     "termsConditions" : MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
     "title_add_daemon" : MessageLookupByLibrary.simpleMessage("Add Daemon"),
     "title_add_master_node" : MessageLookupByLibrary.simpleMessage("Add Master Node"),
@@ -122,7 +124,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "title_settings" : MessageLookupByLibrary.simpleMessage("Settings"),
     "unlocking_node" : MessageLookupByLibrary.simpleMessage("Node is unlocking"),
     "uptime_proof" : MessageLookupByLibrary.simpleMessage("Uptime proof"),
-    "welcome" : MessageLookupByLibrary.simpleMessage("Welcome,\nBeldex Master Node Operator"),
+    "welcome" : MessageLookupByLibrary.simpleMessage("Welcome,\nBeldex Master Node Monitor"),
     "welcome_first_line" : MessageLookupByLibrary.simpleMessage("Here you can watch Master Nodes you run or contribute to."),
     "your_master_nodes" : MessageLookupByLibrary.simpleMessage("Your Master Nodes")
   };

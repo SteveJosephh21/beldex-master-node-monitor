@@ -35,10 +35,10 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Welcome,\nBeldex Master Node Operator`
+  /// `Welcome,\nBeldex Master Node Monitor`
   String get welcome {
     return Intl.message(
-      'Welcome,\nBeldex Master Node Operator',
+      'Welcome,\nBeldex Master Node Monitor',
       name: 'welcome',
       desc: '',
       args: [],
@@ -910,6 +910,26 @@ class S {
     return Intl.message(
       'Terms & Conditions',
       name: 'termsConditions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Help`
+  String get help {
+    return Intl.message(
+      'Help',
+      name: 'help',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms and Conditions`
+  String get termsAndConditions {
+    return Intl.message(
+      'Terms and Conditions',
+      name: 'termsAndConditions',
       desc: '',
       args: [],
     );

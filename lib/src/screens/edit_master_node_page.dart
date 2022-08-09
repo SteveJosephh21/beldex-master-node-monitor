@@ -112,7 +112,7 @@ class EditMasterNodePageBodyState extends State<EditMasterNodePageBody> {
                 Padding(
                   padding: EdgeInsets.all(15),
                   child: Text(
-                    "Are you sure you want to delete this Node?",
+                    "Are you sure you want to delete this Node from this list?",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 18,
