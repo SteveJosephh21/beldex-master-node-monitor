@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:master_node_monitor/generated/l10n.dart';
 import 'package:master_node_monitor/src/utils/router/beldex_routes.dart';
 import 'package:master_node_monitor/src/utils/theme/palette.dart';
@@ -26,7 +27,7 @@ class WelcomePage extends StatelessWidget {
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.all(20),
-                child: Image.asset('assets/images/beldex_logo.png',
+                child: Image.asset('assets/images/mn_monitor_logo.png',
                     height: 124, width: 400),
               ),
               Padding(
@@ -72,7 +73,7 @@ class WelcomePage extends StatelessWidget {
             PrimaryButton(
                 onPressed: () {
                   Navigator.of(context).pop();
-                  Navigator.pushNamed(context, BeldexRoutes.addMasterNode);
+                  Navigator.pushNamed(context, BeldexRoutes.addMasterNode,arguments: true);
                 },
                 text: S.of(context).add_master_node,
                 color:
