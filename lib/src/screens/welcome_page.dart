@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:master_node_monitor/generated/l10n.dart';
 import 'package:master_node_monitor/src/utils/router/beldex_routes.dart';
-import 'package:master_node_monitor/src/utils/theme/palette.dart';
 import 'package:master_node_monitor/src/widgets/primary_button.dart';
 
 class WelcomePage extends StatelessWidget {
